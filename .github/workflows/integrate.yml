@@ -27,8 +27,6 @@ jobs:
       with:
         # Version range or exact version of a Python version to use, using SemVer's version range syntax.
         python-version: '3.7.8'
-        # The target architecture (x86, x64) of the Python interpreter.
-        architecture: 'x86'
         
     - name: Python Django Coverage GitHub Action
       uses: dc740/django-coveragepy-github-action@0.9
