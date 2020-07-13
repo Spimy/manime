@@ -29,6 +29,6 @@ jobs:
       env:
         SECRET_KET: ${{ secrets.SECRET_KEY }}
       run: |
-        python manage.py test "$env:SECRET_KET"
+        SECRET_KET=$SECRET_KET; python manage.py test
     - name: Django Security Check
       uses: victoriadrake/django-security-check@v1.0.0
