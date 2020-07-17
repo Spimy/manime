@@ -1,5 +1,10 @@
 {
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
+    "python.linting.pylintArgs": [
+        "--load-plugins",
+        "pylint_django",
+        // "--only-errors"
+    ],
     "python.pythonPath": "venv\\Scripts\\python.exe"
 }
