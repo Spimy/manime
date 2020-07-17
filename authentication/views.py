@@ -1,9 +1,12 @@
-from django.shortcuts import render
-from django.views.generic.base import TemplateView
+# from django.shortcuts import render
+from django.views.generic.edit import CreateView
+from django.contrib.auth.models import User
+from .forms import RegistrationForm
 
 # Create your views here.
 
 
-class RegisterView(TemplateView):
-    template_name = 'register.html'
-    
+class RegisterView(CreateView):
+    model = User
+    form_class = RegistrationForm
+    template_name = "register.html"
