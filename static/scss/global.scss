@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@400;600;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@400;600;800;900&display=swap");
 
 *,
 *::before,
@@ -17,7 +17,7 @@ body {
 
 html {
     box-sizing: border-box;
-    font-family: 'Catamaran', sans-serif;
+    font-family: "Catamaran", sans-serif;
     font-size: 16px;
 }
 
@@ -36,13 +36,19 @@ button {
     cursor: pointer;
     color: #f1f1f1;
     border: none;
+    background-color: #0c0c0c;
 }
 
 @for $i from 1 through 6 {
     h#{$i} {
-        font-size: 1rem + .5 * (6 - $i);
+        font-size: 1rem + 0.5 * (6 - $i);
         margin: 0;
     }
+}
+
+input {
+    font-family: "Font Awesome 5 Free", "Catamaran", sans-serif;
+    font-weight: 900;
 }
 
 .container {
