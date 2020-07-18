@@ -16,10 +16,6 @@ class RegisterView(CreateView):
 
         errors = form.errors.get_json_data()
         error_msg = errors['__all__'][0]['message']
-
-        if errors['__all__'][0]['code'] != '':
-            error_msg = errors['__all__'][0]['code'].upper() + ': ' + error_msg
-
         messages.error(self.request, error_msg)
 
         return super(RegisterView, self).form_invalid(form)
