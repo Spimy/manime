@@ -2,13 +2,25 @@
 {% block title %}MAnime - Register{% endblock %}
 
 {% block content %}
-<h1>This will be the register page</h1>
-<form method="post">{% csrf_token %}
-    {% for field in form.visible_fields %}
-    <div class="field">
-        {{ field.label_tag }} {{ field }}
-    </div>
-    {% endfor %}
-    <button type="submit">Register</button>
-</form>
+<section id="registration">
+    <form class="registration-form" method="post">{% csrf_token %}
+
+        <div class="text-container">
+            <h3>Welcome to MAnime</h3>
+            <p>Sign up and start tracking anime!</p>
+        </div>
+
+        {% for field in form.visible_fields %}
+        <div class="field">
+            <div class="label-container">
+                {{ field.label_tag }}
+                {% if field.errors %} {% include 'message.html' with type='error' %}{% endif %}
+            </div>
+            {{ field }}
+        </div>
+        {% endfor %}
+        <button class='btn primary' type="submit">Register</button>
+    </form>
+</section>
+
 {% endblock content %}
