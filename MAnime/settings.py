@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'livereload',
     'django_sass',
     'meta',
-    'authentication.apps.AuthenticationConfig'
+    'authentication'
 ]
 
 MIDDLEWARE = [
