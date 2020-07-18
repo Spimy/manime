@@ -27,13 +27,12 @@ def validate_password_strength(password, username):
             code='invalid'
         )
 
-    if (not re.match(r'^(?=.*[a-zA-Z])(?=.*[0-9]){{{0},}}'.format(min_length), password)):
+    if not re.match(r'^(?=.*[a-zA-Z])(?=.*[0-9]){{{0},}}'.format(min_length), password):
         raise forms.ValidationError(
             'Password must contain both letters and digits',
             code='invalid'
         )
 
-    # check for uppercase letter
     if not any(c.isupper() for c in password):
         raise forms.ValidationError(
             'Password must contain at least 1 uppercase letter',
@@ -43,30 +42,23 @@ def validate_password_strength(password, username):
 
 class RegistrationForm(UserCreationForm):
 
-    username = forms.CharField(
-        widget=forms.TextInput(attrs={'placeholder': '\uf007'})
+    username = forms.CharField(widget=forms.TextInput(
+        attrs={'placeholder': '\uf007'})
     )
 
     email = forms.EmailField(required=True, label='Email', max_length=255,
                              widget=forms.EmailInput(
-                                 attrs={
-                                     'autofocus': True,
-                                     'placeholder': '\uf0e0'
-                                 })
+                                 attrs={'placeholder': '\uf0e0'})
                              )
 
     password1 = forms.CharField(label='Password',
                                 widget=forms.PasswordInput(
-                                    attrs={
-                                        'placeholder': '\uf023'
-                                    })
+                                    attrs={'placeholder': '\uf023'})
                                 )
 
     password2 = forms.CharField(label='Password confirmation',
                                 widget=forms.PasswordInput(
-                                    attrs={
-                                        'placeholder': '\uf023'
-                                    })
+                                    attrs={'placeholder': '\uf023'})
                                 )
 
     def __init__(self, *args, **kwargs):
