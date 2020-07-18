@@ -3,5 +3,5 @@ from .views import RegisterView
 
 app_name = 'authentication'
 urlpatterns = [
-    url('register/', RegisterView.as_view())
+    url('register/', RegisterView.as_view(), name='register')
 ]

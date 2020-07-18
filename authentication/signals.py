@@ -4,8 +4,8 @@ from .models import UserProfile
 
 
 def create_profile(sender, **kwargs):
-    if kwargs.get("created", False):
-        user_profile = UserProfile.objects.create(user=kwargs["instance"])
+    if kwargs.get('created', False):
+        UserProfile.objects.create(user=kwargs['instance'])
 
 
 post_save.connect(create_profile, User)
