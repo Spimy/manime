@@ -1,12 +1,28 @@
 # from django.shortcuts import render
 from django.views.generic.edit import CreateView
-from django.contrib.auth.models import User
+from django.urls.base import reverse
+from django.contrib import messages
 from .forms import RegistrationForm
 
 # Create your views here.
 
 
 class RegisterView(CreateView):
-    model = User
+
     form_class = RegistrationForm
-    template_name = "register.html"
+    template_name = 'register.html'
+
+    def form_invalid(self, form: RegistrationForm):
+
+        errors = form.errors.get_json_data()
+        error_msg = errors['__all__'][0]['message']
+
+        if errors['__all__'][0]['code'] != '':
+            error_msg = errors['__all__'][0]['code'].upper() + ': ' + error_msg
+
+        messages.error(self.request, error_msg)
+
+        return super(RegisterView, self).form_invalid(form)
+
+    def get_success_url(self):
+        return reverse('authentication:register')
