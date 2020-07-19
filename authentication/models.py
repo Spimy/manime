@@ -1,6 +1,6 @@
 from django.db import models
+from django.conf import settings
 from django.utils.text import slugify
-from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -8,14 +8,21 @@ from django.contrib.auth.models import User
 class UserProfile(models.Model):
 
     user = models.OneToOneField(
-        User, on_delete=models.CASCADE, related_name="user_profile")
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='user_profile'
+    )
+
     slug = models.SlugField(max_length=255, blank=True, null=True)
-    avatar = models.ImageField(upload_to="User_Avatars", null=True, blank=True)
-    banner = models.ImageField(upload_to="User_Banners", null=True, blank=True)
+    avatar = models.ImageField(upload_to='User_Avatars', null=True, blank=True)
+    banner = models.ImageField(upload_to='User_Banners', null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
 
     following = models.ManyToManyField(
-        User, related_name="following", blank=True)
+        settings.AUTH_USER_MODEL,
+        related_name='following',
+        blank=True
+    )
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.user.username)
