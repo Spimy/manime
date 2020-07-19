@@ -62,7 +62,7 @@ html {
 }
 
 body {
-    background-color: #25253d;
+    background-color: #141c31;
     color: #f1f1f1;
 }
 
@@ -100,7 +100,7 @@ input {
     cursor: pointer;
     color: #f1f1f1;
     border: none;
-    border-radius: 5px;
+    border-radius: 0.25em;
     background-color: #0c0c0c;
     padding: 0.5em 1em;
     font-family: "Catamaran", sans-serif;
@@ -112,6 +112,6 @@ input {
     }
 
     &.primary {
-        background-color: #4821b3;
+        background-color: #181d44;
     }
 }
