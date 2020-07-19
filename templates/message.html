@@ -1,0 +1,9 @@
+{% if messages %}
+{% for message in messages %}
+{% if type != 'snackbar' %}
+<p id="msg" class="{{ code }}">- {{ message }}</p>
+{% else %}
+<h1>{{ message }}</h1>
+{% endif %}
+{% endfor %}
+{% endif %}

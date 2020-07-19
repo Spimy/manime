@@ -1,5 +1,16 @@
 {
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
+    "python.linting.pylintArgs": [
+        "--load-plugins",
+        "pylint_django",
+        "--disable=W0222, C0111"
+        // "--only-errors"
+    ],
     "python.pythonPath": "venv\\Scripts\\python.exe"
 }
+
+/*
+    W0222: signature-differs
+    C0111: missing-docstring
+*/

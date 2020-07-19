@@ -1,4 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@400;600;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@400;600;800;900&display=swap");
+
+// Breakpoints
+$bp-small: 48em; // 768px
+$bp-medium: 64em; // 1024px
+$bp-large: 85.375em; // 1366px
+$bp-xlarge: 120em; // 1920px
+$bp-xxlarge: 160em; // 2560px
+
+// Media Queries
+$mq-small: "(min-width: #{$bp-small})";
+$mq-medium: "(min-width: #{$bp-medium})";
+$mq-large: "(min-width: #{$bp-large})";
+$mq-xlarge: "(min-width: #{$bp-xlarge})";
+$mq-xxlarge: "(min-width: #{$bp-xxlarge})";
+$mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
+
+// Font-Size
+$base-font-size: 1em;
+
+// Line-Height
+$base-line-height: 1.5;
+$header-line-height: 1.25;
 
 *,
 *::before,
@@ -17,12 +39,30 @@ body {
 
 html {
     box-sizing: border-box;
-    font-family: 'Catamaran', sans-serif;
-    font-size: 16px;
+    font-family: "Catamaran", sans-serif;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+
+    @media #{$mq-medium} {
+        font-size: $base-font-size*0.75;
+        line-height: $base-line-height*0.75;
+    }
+
+    @media #{$mq-large} {
+        font-size: $base-font-size*1;
+    }
+
+    @media #{$mq-xlarge} {
+        font-size: $base-font-size*2;
+    }
+
+    @media #{$mq-xxlarge} {
+        font-size: $base-font-size*3;
+    }
 }
 
 body {
-    background-color: #25253d;
+    background-color: #141c31;
     color: #f1f1f1;
 }
 
@@ -32,19 +72,46 @@ a:focus {
     text-decoration: none;
 }
 
-button {
-    cursor: pointer;
-    color: #f1f1f1;
-    border: none;
-}
 
 @for $i from 1 through 6 {
     h#{$i} {
-        font-size: 1rem + .5 * (6 - $i);
+        font-size: 1rem + 0.5 * (6 - $i);
         margin: 0;
     }
 }
 
+input {
+    color: #f1f1f1;
+    border: none;
+
+    &::placeholder {
+        font-family: "Font Awesome 5 Free", "Catamaran", sans-serif;
+        font-weight: 900;
+        color: currentColor;
+    }
+}
+
 .container {
-    margin: 0 5rem;
+    height: 100%;
+    margin: 0 10vw;
+}
+
+.btn {
+    cursor: pointer;
+    color: #f1f1f1;
+    border: none;
+    border-radius: 0.25em;
+    background-color: #0c0c0c;
+    padding: 0.5em 1em;
+    font-family: "Catamaran", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    &:hover {
+        box-shadow: 0 0 3px 0 currentColor;
+    }
+
+    &.primary {
+        background-color: #181d44;
+    }
 }

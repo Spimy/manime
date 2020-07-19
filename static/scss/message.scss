@@ -1,0 +1,66 @@
+#msg {
+    display: inline;
+
+    -webkit-animation:
+        fadeIn 0.3s ease-in-out 0s 1 forwards,
+        fadeOut 0.3s ease-in-out 5s 1 forwards;
+    animation:
+        fadeIn 0.3s ease-in-out 0s 1 forwards,
+        fadeOut 0.3s ease-in-out 5s 1 forwards;
+
+    overflow: visible;
+
+    &.success {
+        color: #0eda2e;
+    }
+
+    &.warning {
+        color: #ffad00;
+    }
+
+    &.error {
+        color: #F65D37;
+    }
+}
+
+@-webkit-keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        font-size: 0px;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        font-size: 0px;
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
