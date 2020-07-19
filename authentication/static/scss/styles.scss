@@ -1,1 +1,57 @@
-@import 'register';
+#authentication {
+
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 100%;
+
+    @media (max-width:980px) {
+        margin: 2em 0;
+    }
+
+    .authentication-form {
+
+        border-radius: 0.5em;
+        background-color: #050c2c;
+        padding: 2em;
+        flex-grow: 1;
+
+        .text-container {
+            text-align: center;
+
+            h3,
+            p {
+                margin: 0
+            }
+        }
+
+        .field {
+            border-radius: 0.25em;
+            background: #181d44;
+            padding: 1em;
+            display: flex;
+            flex-direction: column;
+            margin: 1em 0;
+
+            .label-container {
+                margin-bottom: 0.25em;
+            }
+
+            input {
+                background-color: #050c2c;
+                font-size: 1em;
+                border-radius: 0.25em;
+                padding: 0.5em;
+            }
+        }
+
+        button {
+            font-size: 1em;
+            width: 100%;
+        }
+
+    }
+
+}
