@@ -5,8 +5,10 @@ from django.contrib.auth.forms import (
     # UserChangeForm,
     # PasswordChangeForm
 )
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from .utils import validate_password_strength
+
+User = get_user_model()
 
 
 class RegistrationForm(UserCreationForm):
