@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}MAnime - {{ auth_type.0 }}{% endblock %}
+
+{% block content %}
+<section id="authentication">
+    <form class="authentication-form" method="post">{% csrf_token %}
+
+        <div class="text-container">
+            <h3>Welcome to MAnime</h3>
+            <p>{{ auth_type.1 }} and start tracking anime</p>
+        </div>
+
+        {% for field in form.visible_fields %}
+        <div class="field">
+            <div class="label-container">
+                {{ field.label_tag }}
+                {% if field.errors %} {% include 'message.html' with code='error' %}{% endif %}
+            </div>
+            {{ field }}
+        </div>
+        {% endfor %}
+        <button class="btn primary" type="submit">{{ auth_type.2 }}</button>
+    </form>
+</section>
+
+{% include 'message.html' with code='error' type='snackbar' %}
+
+{% endblock content %}
