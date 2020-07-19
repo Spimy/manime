@@ -2,12 +2,12 @@
 {% block title %}MAnime - Register{% endblock %}
 
 {% block content %}
-<section id="registration">
-    <form class="registration-form" method="post">{% csrf_token %}
+<section id="authentication">
+    <form class="authentication-form" method="post">{% csrf_token %}
 
         <div class="text-container">
             <h3>Welcome to MAnime</h3>
-            <p>Sign up and start tracking anime!</p>
+            <p>Sign up and start tracking anime</p>
         </div>
 
         {% for field in form.visible_fields %}
