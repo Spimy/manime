@@ -132,3 +132,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+
+# Auth settings
+# https://docs.djangoproject.com/en/2.2/ref/settings/#auth
+
+LOGIN_URL = 'authentication:login'
