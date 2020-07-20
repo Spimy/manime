@@ -1,25 +1,33 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}MAnime - {{ auth_type.0 }}{% endblock %}
 
 {% block content %}
 <section id="authentication">
     <form class="authentication-form" method="post">{% csrf_token %}
 
-        <div class="text-container">
-            <h3>Welcome to MAnime</h3>
-            <p>{{ auth_type.1 }} and start tracking anime</p>
-        </div>
+        <h1>{{ auth_type.1 }} and<br><span>start tracking anime</span></h1>
 
         {% for field in form.visible_fields %}
-        <div class="field">
-            <div class="label-container">
-                {{ field.label_tag }}
-                {% if field.errors %} {% include 'message.html' with code='error' %}{% endif %}
-            </div>
+        <fieldset class="field">
+            <legend>{{ field.label_tag }}</legend>
             {{ field }}
-        </div>
+        </fieldset>
         {% endfor %}
-        <button class="btn primary" type="submit">{{ auth_type.2 }}</button>
+        <div class="actions">
+            {% with url_name=request.resolver_match.url_name %}
+            <button class="translucent" type="submit">{{ auth_type.2 }}</button>
+            <p>or</p>
+            <div class="links">
+                {% if url_name == 'register' %}
+                <a href="{% url 'authentication:login' %}">Login Here</a>
+                {% else %}
+                <a href="{% url 'authentication:register' %}">Register Here</a>
+                <a href="{% url 'authentication:login' %}">Forgot Password</a>
+                {% endif %}
+            </div>
+            {% endwith %}
+        </div>
     </form>
 </section>
 
