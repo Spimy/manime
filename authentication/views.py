@@ -1,5 +1,7 @@
 # from django.shortcuts import render
+from django.views.generic.base import RedirectView
 from django.views.generic.edit import CreateView, FormView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls.base import reverse_lazy
 from django.contrib import messages, auth
 from .forms import RegistrationForm, LoginForm
@@ -43,3 +45,14 @@ class LoginView(FormView):
         context = super().get_context_data(**kwargs)
         context['auth_type'] = ['Login', 'Sign In', 'Authenticate']
         return context
+
+
+class LogoutView(LoginRequiredMixin, RedirectView):
+
+    def get(self, request, *args, **kwargs):
+        auth.logout(request)
+        return super(LogoutView, self).get(request, *args, **kwargs)
+
+    def get_redirect_url(self, *args, **kwargs):
+        self.url = self.request.GET.get('next', '/')
+        return super(LogoutView, self).get_redirect_url(*args, **kwargs)
