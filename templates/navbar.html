@@ -1,0 +1,14 @@
+<header id="navbar">
+    <h3>MAnime</h3>
+    <nav>
+        <a href="">Home</a>
+        <a href="">Profile</a>
+        <a href="">Anime List</a>
+        {% if not user.is_authenticated %}
+        <a href="{% url 'authentication:login' %}">Login</a>
+        <a href="{% url 'authentication:register' %}">Register</a>
+        {% else %}
+        <a href="{% url 'authentication:logout' %}?next={{ request.path }}">Logout</a>
+        {% endif %}
+    </nav>
+</header>
