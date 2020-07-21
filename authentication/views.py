@@ -12,7 +12,7 @@ from .forms import RegistrationForm, LoginForm
 class RegisterView(CreateView):
 
     form_class = RegistrationForm
-    template_name = 'auth.html'
+    template_name = 'register.html'
     success_url = reverse_lazy('authentication:login')
 
     def form_invalid(self, form: RegistrationForm):
@@ -20,16 +20,11 @@ class RegisterView(CreateView):
         messages.error(self.request, errors['__all__'][0]['message'])
         return super(RegisterView, self).form_invalid(form)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['auth_type'] = ['Register', 'Sign up', 'Register']
-        return context
-
 
 class LoginView(FormView):
 
     form_class = LoginForm
-    template_name = 'auth.html'
+    template_name = 'login.html'
     success_url = reverse_lazy('authentication:register')
 
     def form_valid(self, form: LoginForm):
@@ -40,11 +35,6 @@ class LoginView(FormView):
         errors = form.errors.get_json_data()
         messages.error(self.request, errors['__all__'][0]['message'])
         return super(LoginView, self).form_invalid(form)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['auth_type'] = ['Login', 'Sign In', 'Authenticate']
-        return context
 
 
 class LogoutView(LoginRequiredMixin, RedirectView):
