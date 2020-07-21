@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
-{% load static %}
-{% block title %}MAnime - {{ auth_type.0 }}{% endblock %}
+{% block title %}MAnime - {{ title }}{% endblock %}
 
 {% block content %}
+
 <section id="authentication">
+
     <form class="authentication-form" method="post">{% csrf_token %}
 
-        <h1>{{ auth_type.1 }} and<br><span>start tracking anime</span></h1>
+        <h1>{{ heading }} and<br><span>start tracking anime</span></h1>
 
         {% for field in form.visible_fields %}
         <fieldset class="field">
@@ -14,21 +15,27 @@
             {{ field }}
         </fieldset>
         {% endfor %}
+
+        {% if page_name == 'login' %}
+        <a class="forgot-pass" href="{% url 'authentication:login' %}">Forgot Password</a>
+        {% endif %}
+
         <div class="actions">
-            {% with url_name=request.resolver_match.url_name %}
-            <button class="translucent" type="submit">{{ auth_type.2 }}</button>
+            <button class="translucent" type="submit">{{ button }}</button>
             <p>or</p>
+
             <div class="links">
-                {% if url_name == 'register' %}
+                {% if page_name == 'register' %}
                 <a href="{% url 'authentication:login' %}">Login Here</a>
                 {% else %}
                 <a href="{% url 'authentication:register' %}">Register Here</a>
-                <a href="{% url 'authentication:login' %}">Forgot Password</a>
                 {% endif %}
             </div>
-            {% endwith %}
+
         </div>
+
     </form>
+
 </section>
 
 {% include 'message.html' with code='error' type='snackbar' %}
