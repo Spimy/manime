@@ -39,10 +39,8 @@ class LoginView(FormView):
 
 class LogoutView(LoginRequiredMixin, RedirectView):
 
+    url = reverse_lazy('authentication:login')
+
     def get(self, request, *args, **kwargs):
         auth.logout(request)
         return super(LogoutView, self).get(request, *args, **kwargs)
-
-    def get_redirect_url(self, *args, **kwargs):
-        self.url = self.request.GET.get('next', '/')
-        return super(LogoutView, self).get_redirect_url(*args, **kwargs)
