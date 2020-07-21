@@ -28,6 +28,10 @@
             flex-direction: column;
             margin: 2.5em 0;
 
+            &:last-of-type {
+                margin-bottom: 0.5em;
+            }
+
             legend {
                 padding: 0 0.5em;
             }
@@ -45,6 +49,12 @@
                 padding: 1em 0.45em;
             }
 
+        }
+
+        .forgot-pass {
+            margin-bottom: 1em;
+            display: block;
+            text-align: end;
         }
 
         .actions {
