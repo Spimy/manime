@@ -20,7 +20,10 @@ class RegisterView(CreateView):
 
     def form_invalid(self, form: RegistrationForm):
         errors = form.errors.get_json_data()
-        messages.error(self.request, errors['__all__'][0]['message'])
+
+        for msg in errors:
+            messages.error(self.request, errors[msg][0]['message'])
+
         return super(RegisterView, self).form_invalid(form)
 
 
@@ -36,7 +39,10 @@ class LoginView(FormView):
 
     def form_invalid(self, form: LoginForm):
         errors = form.errors.get_json_data()
-        messages.error(self.request, errors['__all__'][0]['message'])
+
+        for msg in errors:
+            messages.error(self.request, errors[msg][0]['message'])
+
         return super(LoginView, self).form_invalid(form)
 
 
