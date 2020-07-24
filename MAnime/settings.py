@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'livereload',
     'django_sass',
     'meta',
+    'landing',
     'authentication'
 ]
 
