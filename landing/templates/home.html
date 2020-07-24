@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock styles %}
+{% block title %}MAnime - Home{% endblock title %}
+
+{% block content %}
+<section id="anime_list">
+    <div class="current-season">
+        <h1>Summer 2020 Anime</h1>
+        {% for anime in anime_list  %}
+        <a href="https://kitsu.io/anime/{{ anime.id }}" target="_blank">
+            <div class="anime">
+                <img src="{{ anime.attributes.posterImage.original }}">
+                <p>{{ anime.attributes.canonicalTitle }}</p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% endblock content %}

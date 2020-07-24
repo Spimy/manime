@@ -1,0 +1,51 @@
+#anime_list {
+
+    margin-top: -5rem;
+
+    .current-season {
+
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 150px));
+
+        h1 {
+            grid-column: 1 / -1;
+            font-weight: 200;
+        }
+
+        .anime {
+
+            position: relative;
+            height: 100%;
+            width: 100%;
+
+            img {
+                border-radius: 5px;
+                display: block;
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+
+            p {
+                position: absolute;
+                bottom: -100px;
+                padding: .5rem;
+                background-color: rgba(0, 0, 0, 0.8);
+                width: 100%;
+                opacity: 0;
+                transition: all 0.3s ease-in-out;
+                cursor: pointer;
+            }
+
+            &:hover p {
+                bottom: 0;
+                opacity: 1;
+            }
+
+        }
+
+    }
+
+}
