@@ -1,31 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@100;200;400;600;800;900&display=swap");
 
-// Breakpoints
-$bp-small: 48em; // 768px
-$bp-medium: 64em; // 1024px
-$bp-large: 85.375em; // 1366px
-$bp-xlarge: 120em; // 1920px
-$bp-xxlarge: 160em; // 2560px
-
-// Media Queries
-$mq-small: "(min-width: #{$bp-small})";
-$mq-medium: "(min-width: #{$bp-medium})";
-$mq-large: "(min-width: #{$bp-large})";
-$mq-xlarge: "(min-width: #{$bp-xlarge})";
-$mq-xxlarge: "(min-width: #{$bp-xxlarge})";
-$mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
-
-// Font-Size
-$base-font-size: 1em;
-
-// Line-Height
-$base-line-height: 1.5;
-$header-line-height: 1.25;
-
 *,
 *::before,
 *::after {
-    box-sizing: inherit;
+    box-sizing: border-box;
 }
 
 html,
@@ -37,33 +15,13 @@ body {
     position: relative;
 }
 
-html {
-    box-sizing: border-box;
-    font-family: "Catamaran", sans-serif;
-    font-size: $base-font-size;
-    line-height: $base-line-height;
-
-    @media #{$mq-medium} {
-        font-size: $base-font-size*0.75;
-        line-height: $base-line-height*0.75;
-    }
-
-    @media #{$mq-large} {
-        font-size: $base-font-size*1;
-    }
-
-    @media #{$mq-xlarge} {
-        font-size: $base-font-size*2;
-    }
-
-    @media #{$mq-xxlarge} {
-        font-size: $base-font-size*3;
-    }
-}
-
 body {
-    background: linear-gradient(90deg, $bg-main-1, $bg-main-2);
+    background: linear-gradient(90deg, $primary-1, $primary-2);
     color: #f1f1f1;
+    font-family: "Catamaran", sans-serif;
+    line-height: 1.5;
+    font-size: 16px;
+    font-size: clamp(1rem, 1vw, 5rem);
 }
 
 a,
@@ -97,23 +55,28 @@ button {
     color: #f1f1f1;
     border: none;
     border-radius: 0.25em;
-    background-color: $default-btn;
+    background-color: $btn-clr;
     padding: 0.5em 1em;
     font-family: "Catamaran", sans-serif;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 600;
 
     &:hover {
         box-shadow: 0 0 3px 0 currentColor;
     }
 
-    &.translucent {
-        background-color: rgba($default-btn, 0.5);
+    &.primary {
+        background-color: $primary-1;
     }
 
-    &.primary {
-        background-color: $primary;
+    &.translucent {
+        background-color: rgba($btn-clr, 0.5);
+
+        &.primary {
+            background-color: rgba($primary-1, 0.5);
+        }
     }
+
 }
 
 .container {
