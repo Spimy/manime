@@ -1,9 +1,9 @@
 {% load static %}
 <header id="navbar">
-    <a class="logo" href=""><img src="{% static 'imgs/text_logo.svg' %}" alt="manime-logo"></a>
+    <a class="logo" href="{% url 'home' %}"><img src="{% static 'img/text_logo.svg' %}" alt="manime-logo"></a>
     <nav>
         {% with url_name=request.resolver_match.url_name %}
-        <a class="{% if url_name == 'home' %}active{% endif %}" href="">Home</a>
+        <a class="{% if url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Home</a>
         <a class="{% if url_name == 'profile' %}active{% endif %}" href="">Profile</a>
         <a class="{% if url_name == 'anime_list' %}active{% endif %}" href="">Anime</a>
         {% endwith %}
