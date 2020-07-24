@@ -1,26 +1,41 @@
 {% extends 'base.html' %}
-{% block title %}MAnime - {{ auth_type.0 }}{% endblock %}
+{% block title %}MAnime - {{ title }}{% endblock %}
 
 {% block content %}
+
 <section id="authentication">
+
     <form class="authentication-form" method="post">{% csrf_token %}
 
-        <div class="text-container">
-            <h3>Welcome to MAnime</h3>
-            <p>{{ auth_type.1 }} and start tracking anime</p>
-        </div>
+        <h1>{{ heading }} and<br><span>start tracking anime</span></h1>
 
         {% for field in form.visible_fields %}
-        <div class="field">
-            <div class="label-container">
-                {{ field.label_tag }}
-                {% if field.errors %} {% include 'message.html' with code='error' %}{% endif %}
-            </div>
+        <fieldset class="field">
+            <legend>{{ field.label_tag }}</legend>
             {{ field }}
-        </div>
+        </fieldset>
         {% endfor %}
-        <button class="btn primary" type="submit">{{ auth_type.2 }}</button>
+
+        {% if page_name == 'login' %}
+        <a class="forgot-pass" href="{% url 'authentication:login' %}">Forgot Password</a>
+        {% endif %}
+
+        <div class="actions">
+            <button class="translucent" type="submit">{{ button }}</button>
+            <p>or</p>
+
+            <div class="links">
+                {% if page_name == 'register' %}
+                <a href="{% url 'authentication:login' %}">Login Here</a>
+                {% else %}
+                <a href="{% url 'authentication:register' %}">Register Here</a>
+                {% endif %}
+            </div>
+
+        </div>
+
     </form>
+
 </section>
 
 {% include 'message.html' with code='error' type='snackbar' %}

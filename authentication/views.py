@@ -1,58 +1,55 @@
-# from django.shortcuts import render
 from django.views.generic.base import RedirectView
 from django.views.generic.edit import CreateView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls.base import reverse_lazy
-from django.contrib import messages, auth
+from django.contrib import messages
+from django.contrib.auth import login, logout
 from .forms import RegistrationForm, LoginForm
-
-# Create your views here.
 
 
 class RegisterView(CreateView):
 
     form_class = RegistrationForm
-    template_name = 'auth.html'
+    template_name = 'register.html'
     success_url = reverse_lazy('authentication:login')
+
+    def form_valid(self, form: RegistrationForm):
+        valid = super(RegisterView, self).form_valid(form)
+        login(self.request, self.object)
+        return valid
 
     def form_invalid(self, form: RegistrationForm):
         errors = form.errors.get_json_data()
-        messages.error(self.request, errors['__all__'][0]['message'])
-        return super(RegisterView, self).form_invalid(form)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['auth_type'] = ['Register', 'Sign Up', 'Register']
-        return context
+        for msg in errors:
+            messages.error(self.request, errors[msg][0]['message'])
+
+        return super(RegisterView, self).form_invalid(form)
 
 
 class LoginView(FormView):
 
     form_class = LoginForm
-    template_name = 'auth.html'
+    template_name = 'login.html'
     success_url = reverse_lazy('authentication:register')
 
     def form_valid(self, form: LoginForm):
-        auth.login(self.request, form.get_user())
+        login(self.request, form.get_user())
         return super(LoginView, self).form_valid(form)
 
     def form_invalid(self, form: LoginForm):
         errors = form.errors.get_json_data()
-        messages.error(self.request, errors['__all__'][0]['message'])
-        return super(LoginView, self).form_invalid(form)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['auth_type'] = ['Login', 'Sign In', 'Authenticate']
-        return context
+        for msg in errors:
+            messages.error(self.request, errors[msg][0]['message'])
+
+        return super(LoginView, self).form_invalid(form)
 
 
 class LogoutView(LoginRequiredMixin, RedirectView):
 
-    def get(self, request, *args, **kwargs):
-        auth.logout(request)
-        return super(LogoutView, self).get(request, *args, **kwargs)
+    url = reverse_lazy('authentication:login')
 
-    def get_redirect_url(self, *args, **kwargs):
-        self.url = self.request.GET.get('next', '/')
-        return super(LogoutView, self).get_redirect_url(*args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return super(LogoutView, self).get(request, *args, **kwargs)

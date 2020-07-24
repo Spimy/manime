@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@100;400;600;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@100;200;400;600;800;900&display=swap");
 
 // Breakpoints
 $bp-small: 48em; // 768px
@@ -62,7 +62,7 @@ html {
 }
 
 body {
-    background: linear-gradient(90deg, #516395, #614385);
+    background: linear-gradient(90deg, $bg-main-1, $bg-main-2);
     color: #f1f1f1;
 }
 
@@ -88,20 +88,16 @@ input {
         font-family: "Font Awesome 5 Free", "Catamaran", sans-serif;
         font-weight: 900;
         color: currentColor;
+        opacity: 0.75;
     }
 }
 
-.container {
-    height: 100%;
-    margin: 0 10vw;
-}
-
-.btn {
+button {
     cursor: pointer;
     color: #f1f1f1;
     border: none;
     border-radius: 0.25em;
-    background-color: #0c0c0c;
+    background-color: $default-btn;
     padding: 0.5em 1em;
     font-family: "Catamaran", sans-serif;
     font-size: 0.95rem;
@@ -111,7 +107,16 @@ input {
         box-shadow: 0 0 3px 0 currentColor;
     }
 
-    &.primary {
-        background-color: #181d44;
+    &.translucent {
+        background-color: rgba($default-btn, 0.5);
     }
+
+    &.primary {
+        background-color: $primary;
+    }
+}
+
+.container {
+    height: 100%;
+    margin: 0 10vw;
 }
