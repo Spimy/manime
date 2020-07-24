@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock styles %}
+
 {% block title %}MAnime - {{ title }}{% endblock %}
 
 {% block content %}
