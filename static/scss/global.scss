@@ -15,13 +15,16 @@ body {
     position: relative;
 }
 
+html {
+    font-size: 16px;
+    font-size: clamp(1rem, 1vw, 5rem);
+}
+
 body {
     background: linear-gradient(90deg, $primary-1, $primary-2);
     color: #f1f1f1;
     font-family: "Catamaran", sans-serif;
     line-height: 1.5;
-    font-size: 16px;
-    font-size: clamp(1rem, 1vw, 5rem);
 }
 
 a,
